@@ -1,0 +1,12 @@
+﻿;;;;;;;;
+Aspects/Functions;op1;op2;op3;op4;op5;op6;op7;
+Type of motors used for movement ;Servomotors functionality:7 Price:3;Stepper motor functionality:5 Price:4;DC motor + enkoder  functionality:8 Price:5;BLDC motor + enkoder functionality:10 Price:6;;;;
+ Type of device or devices used for feedback loop;accelerometer functionality:3 Price:1;accelerometer x2 functionality:6 Price:2;Magnetometer functionality:2 Price:1;Magnetometer + accelerometer functionality:7 Price:2;IMU functionality:8 Price:3;IMU X 2 functionality:9 Price:10;IMU + camera data functionality:10 Price: 4;
+Control system;In dedicated PCB  with microcontroller functionality:10 Price:5;In board avaliable at market functionality:5 Price:2;;;;;;
+Image aqusition;Camera functionality:7 Price:3;camera + infrared camera functionality:10 Price: 6;;;;;;
+Image transfer;Wired functionality: 10 Price: 1;wireless functionality: 3 Price: 4;;;;;;
+protocol of transfer;UART functionality:8 Price:1;SPI    functionality:8 Price:1;I2C functionality:6 Price:2;ETHERNET functionality:10 Price:6;;;;
+water ressistance ;IP_1     functionality:1 Price:1;IP_2      functionality:2 Price:2;IP_3        functionality:3 Price:2;IP_4           functionality:4 Price:3;IP_5            functionality:4 Price:3;IP_6                           functionality:5 Price:3;IP_7        functionality:9 Price:5;IP_8     functionality:10 Price:9
+dust resistance ;IP4     functionality:6 Price:1;IP5    functionality:8 Price:4;IP6    functionality:10 Price:8;;;;;
+;;;;;;;;
+;;;;;;;;

@@ -207,7 +207,7 @@ void displayOrientationTask(void *pvParameters) {
     Serial.print("Roll: "); Serial.print(measuredAngles[0]);
     Serial.print(" | Pitch: "); Serial.print(measuredAngles[1]);
     Serial.print(" | Yaw: "); Serial.println(measuredAngles[2]);
-    vTaskDelay(500 / portTICK_PERIOD_MS);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 }
 
@@ -221,12 +221,12 @@ void setup() {
     lastTime = millis();
     
     //checking the sensor 
-    //if(!accel.begin())
-    //{
-    // Serial.println("Ooops, no ADXL345 detected ... Check your wiring!");
-    //  while(1);
-    //}
-    //accel.setRange(ADXL345_RANGE_16_G);
+    if(!accel.begin())
+    {
+     Serial.println("Ooops, no ADXL345 detected ... Check your wiring!");
+      while(1);
+    }
+    accel.setRange(ADXL345_RANGE_16_G);
     // Create the semaphore
     dataSemaphore = xSemaphoreCreateBinary();
     
@@ -235,7 +235,7 @@ void setup() {
     xTaskCreate(readSerialTask, "ReadSerialTask", 128, NULL, 1, NULL);
     xTaskCreate(commandChecker, "commandChecker", 128, NULL, 1, NULL);
     xTaskCreate(control_Loop , "control Loop" , 256 ,NULL , 1 , NULL);
-    //xTaskCreate(displayOrientationTask, "Display", 256, NULL, 1, NULL);
+    xTaskCreate(displayOrientationTask, "Display", 256, NULL, 1, NULL);
 
 }
 

@@ -1,6 +1,6 @@
-marek_gimball\
-Seeed_Arduino\
+marek_gimball/
+Seeed_Arduino/
 *.docx
 try.py
-venv\
-venv1\
+venv/
+venv1/

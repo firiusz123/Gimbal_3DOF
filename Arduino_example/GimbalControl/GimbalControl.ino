@@ -114,7 +114,11 @@ void commandChecker(void *pvParameters) {
 
             if (receivedData.length() > 2) {
                 // Trim leading and trailing delimiters
+                Serial.println("data before triming");
+                Serial.println(receivedData);
                 String trimmed = receivedData.substring(0, receivedData.length() - 1);
+                Serial.println("data after triming");
+                Serial.println(trimmed);
 
                 char command[50];
                 trimmed.toCharArray(command, sizeof(command));

@@ -6,6 +6,8 @@
 	(paper "A3")
 	(title_block
 		(title "Gimbal ")
+		(date "2025-06-12")
+		(rev "Michał ")
 	)
 	(lib_symbols
 		(symbol "Connector:Conn_01x04_Pin"

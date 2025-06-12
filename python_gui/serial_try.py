@@ -9,9 +9,12 @@ import threading
 import time
 
 # === Globals ===
+stop_event = threading.Event()
+read_thread = None
+poll_thread = None
 ser = None
 polling_interval = 0.1  # seconds
-start_time = time.time()
+# start_time = time.time()
 x_data, angle_x, angle_y, angle_z = [], [], [], []
 y_max_value = 180
 theme = "#444242"
@@ -50,17 +53,24 @@ port_label.pack(side=tk.LEFT, padx=5)
 
 port_var = tk.StringVar()
 ports = [port.device for port in serial.tools.list_ports.comports()]
-port_dropdown = ttk.Combobox(connect_frame, textvariable=port_var, values=ports, state='readonly', width=15)
+
+port_dropdown = ttk.Combobox(connect_frame, textvariable=port_var, values=ports, state='normal', width=15)
 port_dropdown.pack(side=tk.LEFT)
 
 def connect_serial():
-    global ser
+    global ser, poll_thread, read_thread
+
     try:
         ser = serial.Serial(port_var.get(), 9600, timeout=1)
         time.sleep(2)
         status_label.config(text=f"Connected to {port_var.get()}")
-        threading.Thread(target=read_serial, daemon=True).start()
-        threading.Thread(target=poll_info, daemon=True).start()
+        read_thread = threading.Thread(target=read_serial, daemon=True)
+        poll_thread = threading.Thread(target=poll_info, daemon=True)
+        read_thread.start()
+        poll_thread.start()
+       #read_thread.join()
+       #poll_thread.join()
+
     except Exception as e:
         status_label.config(text=f"Failed: {e}")
 
@@ -171,7 +181,7 @@ y_slider.pack(side=tk.LEFT)
 
 # === Serial Polling ===
 def poll_info():
-    while ser and ser.is_open:
+    while not stop_event.is_set() and ser and ser.is_open:
         try:
             ser.write(b":|GETINFO|:\n")
             sent_text.insert(tk.END, ":|GETINFO|:\n")
@@ -192,7 +202,8 @@ def update_plot():
 
 # === Serial Reading Thread ===
 def read_serial():
-    while ser and ser.is_open:
+    start_time = time.time()
+    while not stop_event.is_set() and ser and ser.is_open:
         try:
             line = ser.readline().decode('utf-8').strip()
             if line:
@@ -216,6 +227,16 @@ def read_serial():
         except Exception as e:
             print("Read Error:", e)
 
+# === Cleanup ===
+def cleanup():
+    stop_event.set()
+    if ser and ser.is_open:
+        try:
+            ser.close()
+        except Exception as e:
+            print("Error closing serial port:", e)
+    root.destroy()
+
 # === Logs ===
 log_frame = tk.Frame(root, bg=theme)
 log_frame.pack(pady=10)
@@ -231,4 +252,6 @@ received_text = tk.Text(log_frame, height=10, width=50, bg="#222222", fg="magent
 received_text.grid(row=1, column=1, padx=5, pady=5)
 
 # === Start GUI ===
+root.protocol("WM_DELETE_WINDOW", cleanup)
 root.mainloop()
+

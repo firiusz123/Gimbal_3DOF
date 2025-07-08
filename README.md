@@ -4,7 +4,7 @@
 
 ## 📖 Project Description
 
-**Gimbal 3DOF** is a three-axis camera stabilization system (pitch, roll, yaw) designed for integration with drones and small aerial platforms. The goal of the project was to create a modular, lightweight, energy-efficient, and weather-resistant solution for hobbyists and professionals alike. The system uses an IMU and servos, controlled by an STM32 microcontroller running FreeRTOS. A Python-based graphical user interface (GUI) is also provided for testing and interaction. The working model present on the provided photos is a prototype that doesnt have the custom PCB that has been designed
+**Gimbal 3DOF** is a three-axis camera stabilization system (pitch, roll, yaw) designed for integration with drones and small aerial platforms. The goal of the project was to create a modular, lightweight, energy-efficient gimball, for the Project classes of AGH university of science and technology course , Mechatronic Design . The system uses an IMU and servos, controlled by an STM32 microcontroller in the custom PCB , and by Arduino Mega within the prototype , both running with FreeRTOS. A Python-based graphical user interface (GUI) is also provided for testing and interaction. The working model present on the provided photos is a prototype that doesnt have the custom PCB that has been designed
 
 ---
 
@@ -78,9 +78,9 @@
 
 ---
 
-## 📈 MATLAB Simulations
+## 📈  Simulations
 
-The project included modal simulations (FEM) using Siemens NX, supported by MATLAB-based analysis. These simulations helped with:
+The project included modal simulations (FEM) using Siemens NX. These simulations helped with:
 
 - Identifying modal frequencies (especially around **700 Hz**) and ensuring the control loop (**100 Hz**) avoids them.
 - Optimizing the gimbal’s mass distribution and weight balancing.
@@ -98,11 +98,9 @@ Simulation results guided mechanical redesigns and ensured robustness in real-wo
 ![Gimbal mounted on drone](images/gimball_22.png)
 
 ### 🛠️ Assembled components:
-![Gimbal parts](images/gimbal_2.jpg)
+![Gimbal parts](images/gimbal_parts.png)
 
 ### 🖥️ GUI for testing and visualization:
 ![GUI](images/gui.png)
-
-> All images are located in the `images/` folder. Make sure they're uploaded to the repository correctly.
 
 ---

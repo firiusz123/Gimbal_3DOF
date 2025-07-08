@@ -44,6 +44,32 @@
 | Board               | Arduino Mega                     |
 | IMU Sensor          | IMU 9DOF v2.0                    |
 | Servos              | Feetech FS510R ×3                |
+| LM7805              | 5v Linear Stabilizator           |
+| 7.4 v lipo          | a small lipo battery 2s          |
+
+### Connection scheme for the prototype 
+#### 🧭 Servo Motor Pinout
+
+| Servo Axis | Signal Pin (Arduino) | VCC (5 V from LM7805) | GND (Common Ground) |
+|------------|----------------------|------------------------|----------------------|
+| Roll       | D9                   | LM7805 OUT             | LM7805 GND           |
+| Pitch      | D10                  | LM7805 OUT             | LM7805 GND           |
+| Yaw        | D2                   | LM7805 OUT             | LM7805 GND           |
+
+---
+
+### ⚡ Power Supply Setup (LM7805)
+
+| LM7805 Pin | Connects To                                      |
+|------------|--------------------------------------------------|
+| **IN**     | 7.4 V battery (+)                                |
+| **OUT**    | - 5 V to all Servo VCC pins  <br> - 5 V to Arduino **VIN** *(optional)* |
+| **GND**    | - Battery (–) <br> - All Servo GND pins <br> - Arduino **GND** |
+
+The connection from 5v to vin is optional since the power to arduino is also delivered via cable that sends the commands to arduino 
+
+
+
 
 ### Software
 

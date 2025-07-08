@@ -2,98 +2,107 @@
 
 ---
 
-## 📖 Opis projektu
+## 📖 Project Description
 
-**Gimbal 3DOF** to trójosiowy system stabilizacji kamery (pitch, roll, yaw) zaprojektowany z myślą o integracji z dronami i lekkimi platformami lotniczymi. Celem projektu było stworzenie modułowego, lekkiego, energooszczędnego i odpornego na warunki zewnętrzne rozwiązania dostępnego dla hobbystów oraz profesjonalistów. System opiera się na serwomechanizmach oraz czujniku IMU, a jego sterowanie realizowane jest za pomocą mikrokontrolera STM32 i systemu FreeRTOS. Interakcja z gimbalem możliwa jest również poprzez graficzny interfejs użytkownika (GUI) napisany w Pythonie.
-
----
-
-## ⚙️ Funkcje
-
-- Stabilizacja kamery w trzech osiach: **Pitch**, **Roll**, **Yaw**
-- Obsługa kamer o masie do **200 g**
-- Kompaktowe wymiary: **30 × 10 × 15 cm**
-- Niska masa własna: **~200 g**
-- Zasilanie: **900 mA**
-- Komunikacja z mikrokontrolerem przez **UART**
-- System tłumienia drgań z silikonowymi amortyzatorami
-- GUI w Pythonie do testów i zadawania pozycji
-- System oparty o **FreeRTOS** z obsługą wątków
-- Zoptymalizowany środek ciężkości i rozmieszczenie masy
+**Gimbal 3DOF** is a three-axis camera stabilization system (pitch, roll, yaw) designed for integration with drones and small aerial platforms. The goal of the project was to create a modular, lightweight, energy-efficient, and weather-resistant solution for hobbyists and professionals alike. The system uses an IMU and servos, controlled by an STM32 microcontroller running FreeRTOS. A Python-based graphical user interface (GUI) is also provided for testing and interaction. The working model present on the provided photos is a prototype that doesnt have the custom PCB that has been designed
 
 ---
 
-## 🧾 Wymagania
+## ⚙️ Features
 
-### Sprzęt
+- 3-axis stabilization: **Pitch**, **Roll**, and **Yaw**
+- Supports cameras up to **200 g**
+- Compact size: **30 × 10 × 15 cm**
+- Lightweight design: **~200 g**
+- Power consumption: **~900 mA** estimated for worst case scenario
+- UART-based communication
+- Rubber-based vibration damping system
+- Python GUI for testing and position control
+- FreeRTOS-based multithreaded control system
+- Optimized weight distribution and center of mass
 
-| Komponent           | Model / Uwagi                   |
+---
+
+## 🧾 Requirements
+
+### Hardware with custom PCB
+
+| Component           | Model / Notes                    |
 |---------------------|----------------------------------|
-| Mikrokontroler      | STM32G431CBT6                    |
-| Czujnik IMU         | IMU 9DOF v2.0                    |
-| Serwomechanizmy     | Feetech FS510R (3 sztuki)        |
-| Oscylator           | 8 MHz WE-XTAL                    |
-| PCB                 | Własny projekt (lub Arduino prototypowo) |
-| Przetworniki logiki | 2× SN74LV1T34                    |
-| Amortyzatory        | Silikonowe, ręcznie wycinane     |
+| Microcontroller     | STM32G431CBT6                    |
+| IMU Sensor          | IMU 9DOF v2.0                    |
+| Servos              | Feetech FS510R ×3                |
+| Oscillator          | 8 MHz WE-XTAL                    |
+| PCB                 | Custom PCB or Arduino prototype  |
+| Logic level shifters| 2× SN74LV1T34                    |
+| Vibration dampers   | Silicone-based, hand-cut         |
 
-### Oprogramowanie
+### Hardware of Prototype
 
-- FreeRTOS (na mikrokontrolerze)
-- GUI w Pythonie (obsługa przez UART)
-- Kod źródłowy w C / Arduino IDE
+| Component           | Model / Notes                    |
+|---------------------|----------------------------------|
+| Board               | Arduino Mega                     |
+| IMU Sensor          | IMU 9DOF v2.0                    |
+| Servos              | Feetech FS510R ×3                |
+
+### Software
+
+- FreeRTOS (embedded)
+- Python GUI for control and testing
+- Source code (C / Arduino)
 
 ---
 
-## 💻 Użytkowanie
+## 💻 Usage
 
-1. Podłącz komponenty zgodnie ze schematem lub płytką PCB.
-2. Wgraj kod z katalogu `Arduino_example` do STM32/Arduino.
-3. Uruchom GUI z folderu `python_gui` do testów i monitorowania IMU.
-4. Gimbal automatycznie stabilizuje kamerę poprzez ciągłe porównanie pozycji z IMU.
-5. Możesz zadawać konkretne pozycje do utrzymania za pomocą GUI.
+1. Connect all components using the provided PCB or wire manually according to the schematic.
+2. Upload the firmware from the `Arduino_example\GimbalControl1` directory to the Arduino.
+3. Launch the GUI from the `python_gui` directory for testing and IMU visualization.
+4. The gimbal continuously reads IMU data and stabilizes the camera accordingly.
+5. You can also send specific positions for the gimbal to hold using the GUI.
 
 ---
 
 ## 🧩 Hardware & Software
 
 **Hardware:**
-- Serwomechanizmy FS510R zapewniają płynną pracę z dobrą rozdzielczością kątową.
-- Czujnik IMU 9DOF v2.0 – niski pobór mocy, kompaktowy rozmiar.
-- Custom PCB – umożliwia integrację wszystkich komponentów i upraszcza montaż.
-- Silikonowe tłumiki redukują wpływ drgań mechanicznych z ramy drona.
+- FS510R servos provide accurate positioning with low power consumption.
+- IMU 9DOF v2.0 offers compact size, low power, and acceptable precision.
+- Custom PCB integrates all components for clean wiring and scalability.
+- Silicone dampers mitigate mechanical vibrations from drone operation.
 
 **Software:**
-- Oprogramowanie oparte o FreeRTOS – niezależna obsługa każdej osi.
-- GUI w Pythonie umożliwia zadawanie pozycji, podgląd danych z IMU, testy i kalibrację.
-- Kod źródłowy udostępniony w repozytorium (`Arduino_example` + `python_gui`).
+- Based on FreeRTOS – enables independent control of each axis.
+- Python GUI allows sending positions, reading IMU data, and system testing.
+- All code is available in the `Arduino_example` and `python_gui` directories.
 
 ---
 
-## 📈 Symulacje w MATLABie
+## 📈 MATLAB Simulations
 
-W ramach projektu przeprowadzono symulacje modalne (FEM) w środowisku Siemens NX oraz analizę drgań i częstotliwości własnych konstrukcji. Wyniki te zostały następnie użyte do:
+The project included modal simulations (FEM) using Siemens NX, supported by MATLAB-based analysis. These simulations helped with:
 
-- Weryfikacji odległości częstotliwości sterowania (100 Hz) od rezonansów (ok. 700 Hz)
-- Optymalizacji rozkładu masy w celu poprawy reakcji dynamicznej
-- Analizy zachowania gimbala w dwóch konfiguracjach krytycznych (pitch i yaw skrajne)
+- Identifying modal frequencies (especially around **700 Hz**) and ensuring the control loop (**100 Hz**) avoids them.
+- Optimizing the gimbal’s mass distribution and weight balancing.
+- Evaluating dynamic response under two critical configurations (extreme pitch/yaw).
 
-Wyniki posłużyły również jako podstawa do poprawy konstrukcji fizycznej i mechanicznej.
+Simulation results guided mechanical redesigns and ensured robustness in real-world operation.
 
 ---
 
-## 🖼️ Zdjęcia prototypu
+## 🖼️ Prototype Images
 
-### ✅ Prototyp zmontowany na dronie:
-![Gimbal na dronie](images/gimbal_1.png)
+### ✅ Final prototype mounted on a drone:
+![Gimbal mounted on drone](images/gimball_1.png)
+![Gimbal mounted on drone](images/gimbal_2.png)
+![Gimbal mounted on drone](images/gimball_22.png)
 
-### 🛠️ Elementy konstrukcyjne:
-![Elementy gimbala](images/gimbal_2.png)
-![Elementy gimbala](images/gimbal_22.png)
+### 🛠️ Assembled components:
+![Gimbal parts](images/gimbal_2.jpg)
 
-### 🖥️ GUI do sterowania:
+### 🖥️ GUI for testing and visualization:
 ![GUI](images/gui.png)
 
-> Wszystkie zdjęcia znajdują się w folderze `images/`. Upewnij się, że są poprawnie dołączone w repozytorium.
+> All images are located in the `images/` folder. Make sure they're uploaded to the repository correctly.
 
 ---

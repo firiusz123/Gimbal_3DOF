@@ -119,14 +119,20 @@ Simulation results guided mechanical redesigns and ensured robustness in real-wo
 ## 🖼️ Prototype Images
 
 ### ✅ Final prototype mounted on a drone:
-![Gimbal mounted on drone](images/gimball_1.png)
-![Gimbal mounted on drone](images/gimbal_2.png)
-![Gimbal mounted on drone](images/gimball_22.png)
+![Gimbal mounted on drone](Media/IMG_0792.jpeg)
+![Gimbal mounted on drone](Media/IMG_0795.jpeg)
+![Gimbal mounted on drone](Media/IMG_0778.jpeg)
 
-### 🛠️ Assembled components:
-![Gimbal parts](images/gimbal_parts.png)
+### 🛠️ Printed components:
+![Gimbal parts](Media/IMG_0784.jpeg)
 
 ### 🖥️ GUI for testing and visualization:
-![GUI](images/gui.png)
+![GUI](Media/gui.png)
 
+## FEM Analisys
+FEM analysis of the mechatronic system was performed. Specifically, the mode vibration analysis using Siemens NX software. The system was analyzed in two configurations. Bellow we list a few illustrations showing NX environment:
+
+![](Media/FEM%20Printscreens/down.jpg)
+![](Media/FEM%20Printscreens/down_88.jpg)
+![](Media/FEM%20Printscreens/Screenshot%20(50).png)
 ---
